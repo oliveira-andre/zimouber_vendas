@@ -12,6 +12,9 @@
         <div class="column is-3">
           <%= link_to t('form.advertisement.add'), new_advertisement_path, class: 'button is-primary is-outlined is-pulled-right' %>
         </div>
+        <% @ads.each do |ad| %>
+          <%= render 'card_advertisement', ad: ad %>
+        <% end %>
       <% end %>
     </div>
   </section>
