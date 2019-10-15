@@ -13,8 +13,8 @@
       <div class="navbar-item">
         <div class="buttons">
           <% if establishment_signed_in? %>
-            <%= link_to t('header.my_account'), '#', class: 'button is-primary'%>
-            <%= link_to t('header.loggout'), destroy_establishment_session_path, class: 'button is-danger' %>
+            <%= link_to t('header.my_account'), advertisements_path, class: 'button is-primary'%>
+            <%= link_to t('header.loggout'), destroy_establishment_session_path, class: 'button is-danger', method: :delete %>
           <% else %>
             <%= link_to t('header.sign_up'), new_establishment_registration_path, class: 'button is-primary' %>
             <%= link_to t('header.login'), new_establishment_session_path, class: 'button' %>
