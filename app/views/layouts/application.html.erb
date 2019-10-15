@@ -5,11 +5,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag '//use.fontawesome.com/releases/v5.7.2/css/all.css', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%= render 'shared/header' %>
     <%= yield %>
   </body>
 </html>
