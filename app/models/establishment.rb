@@ -8,5 +8,7 @@ class Establishment < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :advertisements
+
   validates :trading_name, presence: true, length: { minimum: 2 }
 end
