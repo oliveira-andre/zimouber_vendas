@@ -29,7 +29,8 @@ pt:
       placeholder:
         email: 'ex: example@const.com'
         password: Informe sua senha
-        name: Digite seu nome
+        password_confirmation: Confirme sua senha
+        trading_name: Digite nome fantasia da empresa
   
   activerecord:
     models:
