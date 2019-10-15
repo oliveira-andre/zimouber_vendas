@@ -11,4 +11,8 @@ class Advertisement < ApplicationRecord
   validates :title, presence: true, length: { minimum: 2 }
   validates :value, presence: true, numericality: { greater_than: 0 }
   validates :establishment, presence: true
+
+  def load_image
+    image.attached? ? image : 'no_image'
+  end
 end
