@@ -1,26 +1,38 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <section class="section">
+    <div class="columns is-multiline">
+      <div class="column is-12">
+        <h2 class="is-size-3 has-text-weight-bold has-text-centered">
+          <%= t('form.establishment.sign_in.title') %>
+        </h2>
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="column is-12">
+          <div class="field">
+            <div class="control">
+              <%= f.label :email, class: :label %>
+              <%= f.email_field :email, autofocus: true, class: :input, required: true, placeholder: t('form.establishment.placeholder.email') %>
+            </div>
+          </div>
+        </div>
+        <div class="column is-12">
+          <div class="field">
+            <div class="control">
+              <div class="field">
+                <%= f.label :password, t('form.establishment.password'), class: :label %>
+                <%= f.password_field :password, class: :input, required: true, placeholder: t('form.establishment.placeholder.password') %>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="column is-12 has-text-centered">
+              <%= f.submit t('form.establishment.sign_in.submit'), class: 'button is-primary' %>
+            </div>
+            <div class="column is-12 has-text-centered">
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
