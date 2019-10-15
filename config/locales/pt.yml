@@ -1,0 +1,37 @@
+pt:
+  save: Salvar
+  edit: Editar
+  not_authorized: Não autorizado
+  not_found: Não encontrado
+  brazilian_real: R$
+  header:
+    begin: Início
+    login: Entrar
+    sign_up: Cadastrar
+    loggout: Sair
+    my_account: Minha conta
+  
+  form:
+    establishment:
+      title: Cadastre sua empresa
+      trading_name: Nome fantasia
+      password: Senha
+      password_confirmation: Confirme sua senha
+      remember_me: Lembrar-me
+      forgot_your_password: Esqueceu sua senha?
+      sign_out: Sair
+      sign_in:
+        submit: Entrar
+        title: Faça seu login
+      sign_up:
+        submit: Cadastrar
+        title: Faça seu cadastro
+      placeholder:
+        email: 'ex: example@const.com'
+        password: Informe sua senha
+        name: Digite seu nome
+  
+  activerecord:
+    models:
+      establishment: Estabelecimento
+      advertisement: Anúncio
