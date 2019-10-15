@@ -31,6 +31,10 @@ pt:
         password: Informe sua senha
         password_confirmation: Confirme sua senha
         trading_name: Digite nome fantasia da empresa
+    advertisement:
+      title: Meus anúncios
+      add: Novo anúncio
+      empty: Não há anúncios cadastrados, por favor clique nesse link para adicionar
   
   activerecord:
     models:
