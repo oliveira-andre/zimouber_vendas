@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="columns is-multiline is-mobile">
+    <% @ads.each do |ad| %>
+      <%= render 'card_advertisement', ad: ad %>
+    <% end %>
+  </div>
+</div>
