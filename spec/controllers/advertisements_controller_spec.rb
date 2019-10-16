@@ -38,4 +38,29 @@ RSpec.describe AdvertisementsController, type: :controller do
       end
     end
   end
+
+  describe 'new ad' do
+    context "when user isn't logged_in" do
+      it 'show error and redirect to login' do
+        get :new
+        expect(flash[:alert]).to eq(
+          'Para continuar, efetue login ou registre-se.'
+        )
+        expect(response).to redirect_to(new_establishment_session_path)
+      end
+    end
+
+    context 'when user is logged in' do
+      let(:establishment) { create(:establishment) }
+
+      context 'when try to create ad' do
+        it 'show message and access with success' do
+          sign_in establishment
+          get :new
+          expect(response.status).to eq(200)
+          expect(assigns(:ad).establishment.id).to be(establishment.id)
+        end
+      end
+    end
+  end
 end
