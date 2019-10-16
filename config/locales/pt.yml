@@ -39,6 +39,7 @@ pt:
       value: Valor
       description: Descrição
       create_success: Anúncio criado com sucesso!
+      update_success: Anúncio salvo com sucesso!
       placeholder:
         heading: Informe o título
         description: Diga algo que acha relevante sobre o anuncio
