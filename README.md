@@ -1,24 +1,34 @@
-# README
+# setting up the project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+building docker image container
+```
+docker-compose build
+```
 
-Things you may want to cover:
+to install gems
+```
+docker-compose run --rm website bundle install
+```
 
-* Ruby version
+create and migrate database
+```
+docker-compose run --rm website bundle exec rake db:create
+docker-compose run --rm website bundle exec rake db:migrate
+```
 
-* System dependencies
+starting application
+```
+docker-compose up
+```
 
-* Configuration
+running tests
 
-* Database creation
+rspec
+```
+docker-compose run --rm website bundle exec rspec
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rubycritic
+```
+docker-compose run --rm website bundle exec rubycritic
+```
