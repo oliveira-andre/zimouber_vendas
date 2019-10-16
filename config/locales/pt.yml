@@ -19,6 +19,7 @@ pt:
       password_confirmation: Confirme sua senha
       remember_me: Lembrar-me
       forgot_your_password: Esqueceu sua senha?
+      no_description: Sem descrição
       sign_out: Sair
       sign_in:
         submit: Entrar
