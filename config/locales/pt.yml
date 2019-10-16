@@ -38,6 +38,7 @@ pt:
       heading: Título
       value: Valor
       description: Descrição
+      create_success: Anúncio criado com sucesso!
       placeholder:
         heading: Informe o título
         description: Diga algo que acha relevante sobre o anuncio
@@ -53,7 +54,7 @@ pt:
         password: Senha
         password_confirmation: Confirmação da senha
       advertisement:
-        title: Título
+        heading: Título
         description: Descrição
         value: Valor
         establishment: Estabelecimento
