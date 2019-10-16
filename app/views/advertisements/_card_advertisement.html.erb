@@ -1,16 +1,18 @@
 <div class="column is-3-desktop is-4-tablet is-12-mobile">
-  <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <%= image_tag ad.load_image %>
-      </figure>
-    </div>
-    <div class="card-content">
-      <p class="title is-4"><%= ad.heading %></p>
-      <p class="subtitle is-6"><%= mask_money(ad.value) %></p>
-      <div class="has-text-centered">
-        <%= link_to t('edit'), edit_advertisement_path(ad), class: 'button is-info' %>
+  <%= link_to advertisement_path(ad) do %>
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <%= image_tag ad.load_image %>
+        </figure>
+      </div>
+      <div class="card-content">
+        <p class="title is-4"><%= ad.heading %></p>
+        <p class="subtitle is-6"><%= mask_money(ad.value) %></p>
+        <div class="has-text-centered">
+          <%= link_to t('edit'), edit_advertisement_path(ad), class: 'button is-info' %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
