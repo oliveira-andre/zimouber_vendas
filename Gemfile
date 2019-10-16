@@ -35,9 +35,10 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'chromedriver-helper'
-  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
+  gem 'rspec-rails'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
