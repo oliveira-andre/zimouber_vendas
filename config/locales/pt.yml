@@ -35,7 +35,14 @@ pt:
       title: Meus anúncios
       add: Novo anúncio
       empty: Não há anúncios cadastrados, por favor clique nesse link para adicionar
-  
+      heading: Título
+      value: Valor
+      description: Descrição
+      placeholder:
+        heading: Informe o título
+        description: Diga algo que acha relevante sobre o anuncio
+        value: '0.00'
+
   activerecord:
     models:
       establishment: Estabelecimento
