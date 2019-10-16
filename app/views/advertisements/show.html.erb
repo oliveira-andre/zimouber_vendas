@@ -1,0 +1,43 @@
+<div class="container">
+  <section class="section">
+    <div class="columns is-multiline">
+      <div class="column is-12">
+        <figure class="image is-128-128">
+          <%= image_tag @ad.load_image %>
+        </figure>
+      </div>
+      <div class="column is-6">
+        <h4 class="subtitle">
+          <%= t('form.advertisement.heading') %>
+        </h4>
+        <h1 class="title">
+          <%= @ad.heading %>
+        </h1>
+      </div>
+      <div class="column is-6">
+        <h4 class="subtitle">
+          <%= t('form.establishment.trading_name') %>
+        </h4>
+        <h1 class="title">
+          <%= @ad.establishment.trading_name %>
+        </h1>
+      </div>
+      <div class="column is-12">
+        <h4 class="subtitle">
+          <%= t('form.advertisement.description') %>
+        </h4>
+        <h1 class="title">
+          <%= @ad.description? ? @ad.description : t('form.establishment.no_description') %>
+        </h1>
+      </div>
+      <div class="column is-6">
+        <h4 class="subtitle">
+          <%= t('form.advertisement.value') %>
+        </h4>
+        <h1 class="title">
+          <%= mask_money(@ad.value) %>
+        </h1>
+      </div>
+    </div>
+  </section>
+</div>
