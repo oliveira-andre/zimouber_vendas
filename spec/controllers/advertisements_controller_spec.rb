@@ -63,4 +63,62 @@ RSpec.describe AdvertisementsController, type: :controller do
       end
     end
   end
+
+  describe 'create ad' do
+    context "when user isn't logged_in" do
+      it 'show error and redirect to login' do
+        post :create
+        expect(flash[:alert]).to eq(
+          'Para continuar, efetue login ou registre-se.'
+        )
+        expect(response).to redirect_to(new_establishment_session_path)
+      end
+    end
+
+    context 'when is logged in' do
+      let(:establishment) { create(:establishment) }
+
+      context 'when heading is blank' do
+        it 'show error and redirect to new page' do
+          sign_in establishment
+          post :create, params: { advertisement: { value: 111 } }
+          expect(flash[:error]).to eq(
+            'Título é muito curto (mínimo: 2 caracteres)'
+          )
+          expect(response).to redirect_to(new_advertisement_path)
+        end
+      end
+
+      context 'when value is blank' do
+        it 'show error and redirect to new page' do
+          sign_in establishment
+          post :create, params: {
+            advertisement: {
+              heading: FFaker::LoremFR.word
+            }
+          }
+          expect(flash[:error]).to eq(
+            'Valor não é um número'
+          )
+          expect(response).to redirect_to(new_advertisement_path)
+        end
+      end
+
+      context 'when all values is ok' do
+        it 'create ad and redirect to index' do
+          sign_in establishment
+          post :create, params: {
+            advertisement: {
+              heading: FFaker::LoremFR.word,
+              value: 111
+            }
+          }
+          expect(flash[:success]).to eq(
+            'Anúncio criado com sucesso!'
+          )
+          expect(response).to redirect_to(advertisements_path)
+        end
+      end
+    end
+  end
 end
