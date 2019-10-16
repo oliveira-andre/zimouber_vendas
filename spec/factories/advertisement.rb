@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :advertisement do
-    heading          { FFaker::LoremFR.word }
+    heading          { FFaker::LoremFR.sentence }
     value            { 111 }
     establishment
   end
