@@ -121,4 +121,48 @@ RSpec.describe AdvertisementsController, type: :controller do
       end
     end
   end
+
+  describe 'edit ad' do
+    context "when user isn't logged in" do
+      it 'show error and redirect to login' do
+        get :edit, params: { id: 0 }
+        expect(flash[:alert]).to eq(
+          'Para continuar, efetue login ou registre-se.'
+        )
+        expect(response).to redirect_to(new_establishment_session_path)
+      end
+    end
+
+    context 'when user is logged in' do
+      let(:ad) { create(:advertisement) }
+
+      context "when ad doesn't exist" do
+        it 'show error and redirect to root page' do
+          sign_in ad.establishment
+          get :edit, params: { id: 0 }
+          expect(flash[:error]).to eq('Não encontrado')
+          expect(response).to redirect_to(root_path)
+        end
+      end
+
+      context 'when try to access a ad of another establishment' do
+        it 'show error and redirect to root page' do
+          new_ad = create(:advertisement)
+          sign_in ad.establishment
+          get :edit, params: { id: new_ad.id }
+          expect(flash[:error]).to eq('Não autorizado')
+          expect(response).to redirect_to(root_path)
+        end
+      end
+
+      context 'try to access self product' do
+        it 'get ad and show the edit page' do
+          sign_in ad.establishment
+          get :edit, params: { id: ad.id }
+          expect(flash[:error]).to be_nil
+          expect(response.status).to eq(200)
+        end
+      end
+    end
+  end
 end
