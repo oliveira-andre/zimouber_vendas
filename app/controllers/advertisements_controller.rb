@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class AdvertisementsController < ApplicationController
+  skip_before_action :authenticate_establishment!, only: :show
   before_action :load_advertisement, only: %i[edit update show]
 
   def index
