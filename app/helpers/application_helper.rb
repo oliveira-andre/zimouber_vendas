@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def mask_money(value)
     integer = value.to_s.split('.').first
