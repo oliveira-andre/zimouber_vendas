@@ -2,13 +2,13 @@
 
 class Advertisement < ApplicationRecord
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :heading, use: :slugged
 
   has_one_attached :image
 
   belongs_to :establishment
 
-  validates :title, presence: true, length: { minimum: 2 }
+  validates :heading, presence: true, length: { minimum: 2 }
   validates :value, presence: true, numericality: { greater_than: 0 }
   validates :establishment, presence: true
 
