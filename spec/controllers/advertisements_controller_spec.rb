@@ -273,4 +273,43 @@ RSpec.describe AdvertisementsController, type: :controller do
       end
     end
   end
+
+  describe 'show ad' do
+    let(:ad) { create(:advertisement) }
+
+    context "when user isn't logged in" do
+      it 'show the ad' do
+        get :show, params: { id: ad.id }
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context 'when user is logged in' do
+      context "when ad doesn't exist" do
+        it 'show error and redirect to root page' do
+          sign_in ad.establishment
+          get :show, params: { id: 0 }
+          expect(flash[:error]).to eq('Não encontrado')
+          expect(response).to redirect_to(root_path)
+        end
+      end
+
+      context "when ad isn't from current establishment" do
+        it 'show error and redirect to root page' do
+          new_ad = create(:advertisement)
+          sign_in ad.establishment
+          get :show, params: { id: new_ad.id }
+          expect(response.status).to eq(200)
+        end
+      end
+
+      context 'when ad is from current establishment' do
+        it 'show error and redirect to root page' do
+          sign_in ad.establishment
+          get :show, params: { id: ad.id }
+          expect(response.status).to eq(200)
+        end
+      end
+    end
+  end
 end
