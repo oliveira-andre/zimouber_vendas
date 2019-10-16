@@ -6,11 +6,11 @@
       </figure>
     </div>
     <div class="card-content">
-      <p class="title is-4"><%= ad.name %></p>
+      <p class="title is-4"><%= ad.heading %></p>
       <p class="subtitle is-6"><%= mask_money(ad.value) %></p>
       <div class="has-text-centered">
         <%= link_to t('edit'), edit_advertisement_path(ad), class: 'button is-info' %>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
