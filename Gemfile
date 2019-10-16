@@ -40,6 +40,7 @@ group :test do
   gem 'ffaker'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'rubycritic'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
