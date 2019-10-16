@@ -94,12 +94,24 @@ RSpec.describe AdvertisementsController, type: :controller do
           sign_in establishment
           post :create, params: {
             advertisement: {
-              heading: FFaker::LoremFR.word
+              heading: FFaker::LoremFR.sentence
             }
           }
-          expect(flash[:error]).to eq(
-            'Valor não é um número'
-          )
+          expect(flash[:error]).to eq('Valor não é um número')
+          expect(response).to redirect_to(new_advertisement_path)
+        end
+      end
+
+      context 'when value is negative' do
+        it 'show error and redirect to new page' do
+          sign_in establishment
+          post :create, params: {
+            advertisement: {
+              heading: FFaker::LoremFR.word,
+              value: -1
+            }
+          }
+          expect(flash[:error]).to eq('Valor deve ser maior que 0')
           expect(response).to redirect_to(new_advertisement_path)
         end
       end
@@ -161,6 +173,102 @@ RSpec.describe AdvertisementsController, type: :controller do
           get :edit, params: { id: ad.id }
           expect(flash[:error]).to be_nil
           expect(response.status).to eq(200)
+        end
+      end
+    end
+  end
+
+  describe 'update ad' do
+    context "when user isn't logged in" do
+      it 'show error and redirect to login' do
+        put :update, params: { id: 0 }
+        expect(flash[:alert]).to eq(
+          'Para continuar, efetue login ou registre-se.'
+        )
+        expect(response).to redirect_to(new_establishment_session_path)
+      end
+    end
+
+    context 'when user is logged in' do
+      let(:ad) { create(:advertisement) }
+
+      context "when ad doesn't exist" do
+        it 'show error and redirect to root page' do
+          sign_in ad.establishment
+          put :update, params: { id: 0 }
+          expect(flash[:error]).to eq('Não encontrado')
+          expect(response).to redirect_to(root_path)
+        end
+      end
+
+      context 'when try to update a ad of another establishment' do
+        it 'show error and redirect to root page' do
+          new_ad = create(:advertisement)
+          sign_in ad.establishment
+          put :update, params: { id: new_ad.id }
+          expect(flash[:error]).to eq('Não autorizado')
+          expect(response).to redirect_to(root_path)
+        end
+      end
+
+      context 'when try to update own ad' do
+        context 'try to let heading blank' do
+          it 'show error and redirect to same page' do
+            sign_in ad.establishment
+            put :update, params: {
+              id: ad.id,
+              advertisement: {
+                heading: ''
+              }
+            }
+            expect(flash[:error]).to eq(
+              'Título é muito curto (mínimo: 2 caracteres)'
+            )
+            expect(response).to redirect_to(edit_advertisement_path(ad))
+          end
+        end
+
+        context 'try to let value blank' do
+          it 'show error and redirect to same page' do
+            sign_in ad.establishment
+            put :update, params: {
+              id: ad.id,
+              advertisement: {
+                value: ''
+              }
+            }
+            expect(flash[:error]).to eq('Valor não é um número')
+            expect(response).to redirect_to(edit_advertisement_path(ad))
+          end
+        end
+
+        context 'when try with negative values' do
+          it 'show error and redirect to same page' do
+            sign_in ad.establishment
+            put :update, params: {
+              id: ad.id,
+              advertisement: {
+                value: -1
+              }
+            }
+            expect(flash[:error]).to eq('Valor deve ser maior que 0')
+            expect(response).to redirect_to(edit_advertisement_path(ad))
+          end
+        end
+
+        context 'when all values is right' do
+          it 'show error and redirect to same page' do
+            sign_in ad.establishment
+            put :update, params: {
+              id: ad.id,
+              advertisement: {
+                heading: FFaker::LoremFR.sentence,
+                value: 11
+              }
+            }
+            expect(flash[:success]).to eq('Anúncio salvo com sucesso!')
+            expect(response).to redirect_to(advertisements_path)
+          end
         end
       end
     end
