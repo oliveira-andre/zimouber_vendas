@@ -5,5 +5,7 @@ class AdvertisementsController < ApplicationController
     @ads = current_establishment.advertisements
   end
 
-  def new; end
+  def new
+    @ad = Advertisement.new(establishment: current_establishment)
+  end
 end
