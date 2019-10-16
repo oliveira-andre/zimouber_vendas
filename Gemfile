@@ -16,6 +16,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'friendly_id'
 gem 'toastr-rails'
+gem 'maskmoney-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
