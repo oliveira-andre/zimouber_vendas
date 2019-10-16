@@ -38,6 +38,8 @@ class AdvertisementsController < ApplicationController
     redirect_to edit_advertisement_path(@ad)
   end
 
+  def show; end
+
   private
 
   def advertisement_params
