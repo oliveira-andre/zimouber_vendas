@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found_error
-    redirect_to back_url
+    redirect_to root_path
     flash[:error] = t('not_found')
   end
 
   def not_authorized_error
-    redirect_to back_url
+    redirect_to root_path
     flash[:error] = t('not_authorized')
   end
 
